@@ -5,8 +5,12 @@ const createUserService = async (user: UserDocument): Promise<UserDocument> => {
   return await user.save();
 };
 
-const getUserList = async (): Promise<UserDocument[]> => {
-  return await User.find();
+const findUserByEmail = async (userEmail: string): Promise<UserDocument> => {
+  const foundUser = await User.findOne({ email: userEmail });
+  if (!foundUser) {
+    throw new NotFoundError(`User with email ${userEmail} not found`);
+  }
+  return foundUser;
 };
 
-export default { createUserService, getUserList };
+export default { createUserService, findUserByEmail };
