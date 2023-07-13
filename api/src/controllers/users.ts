@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 import User from "../models/Users";
 import userServices from "../services/users";
+import { UnauthorizedError } from "../helpers/apiError";
 
 export const createUser = async (
   req: Request,
@@ -33,18 +35,25 @@ export const logInWithPassword = async (
   res: Response,
   next: NextFunction
 ) => {
+  const { email, password } = req.body;
+
   try {
     const userData = await userServices.findUserByEmail(req.body.email);
-    if (!userData) {
-      res.status(403).json({ message: "user don't have account yet" });
-      return;
+
+    const hashedPassword = userData.password;
+
+    const isCorrectPassword = await bcrypt.compare(password, hashedPassword);
+
+    if (!isCorrectPassword) {
+      throw new UnauthorizedError();
     }
-    res.json(userData);
+
     const token = jwt.sign(
       { email: req.body.email, _id: userData._id },
       JWT_SECRET,
       { expiresIn: "1h" }
     );
+
     res.json({ userData, token });
   } catch (error) {
     next(error);
