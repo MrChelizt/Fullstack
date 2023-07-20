@@ -8,7 +8,7 @@ const store = configureStore({
   reducer: {
     products: productReducer,
     productDetails: productDetailReducer,
-    ıserInformation: userReducer,
+    userInformation: userReducer,
   },
 });
 
