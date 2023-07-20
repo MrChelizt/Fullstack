@@ -15,8 +15,8 @@ export const createUser = async (
   const { email, password } = req.body;
 
   const userInformation = new User({
-    email: email,
-    password: password,
+    email,
+    password,
   });
 
   try {
@@ -38,7 +38,7 @@ export const logInWithPassword = async (
   const { email, password } = req.body;
 
   try {
-    const userData = await userServices.findUserByEmail(req.body.email);
+    const userData = await userServices.findUserByEmail(email);
 
     const hashedPassword = userData.password;
 
@@ -48,11 +48,9 @@ export const logInWithPassword = async (
       throw new UnauthorizedError();
     }
 
-    const token = jwt.sign(
-      { email: req.body.email, _id: userData._id },
-      JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    const token = jwt.sign({ email: email, _id: userData._id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.json({ userData, token });
   } catch (error) {
