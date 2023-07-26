@@ -14,7 +14,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   const mappedCartItems = cartItems.map((item, index) => (
-    <CartItem key={item.product.id} index={index} item={item} />
+    <CartItem key={item.product._id} index={index} item={item} />
   ));
 
   const handleCheckOutToast = () => {

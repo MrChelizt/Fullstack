@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../redux/store";
-import fetchProductData from "../redux/thunk/products";
+import { fetchProductData } from "../redux/thunk/product";
 import ProductItem from "./ProductItem";
 import Loading from "./Loading";
 
@@ -21,11 +21,11 @@ export default function ProductList() {
   }, [dispatch]);
 
   const filteredProductList = productList.filter((item) =>
-    item.title.toLowerCase().includes(userInput.toLowerCase())
+    item.name.toLowerCase().includes(userInput.toLowerCase())
   );
 
   const mappedProductList = filteredProductList.map((item) => (
-    <ProductItem key={item.id} item={item} />
+    <ProductItem key={item._id} item={item} />
   ));
 
   if (isLoading) {

@@ -12,6 +12,9 @@ import ProductDetails from "./pages/ProductDetails";
 import Products from "./pages/Products";
 import Sustainability from "./pages/Sustainability";
 
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <div className="App">

@@ -23,8 +23,8 @@ export default function WishList() {
     >
       <h3>Wish List</h3>
       {wishList?.map((item) => (
-        <ListItem key={item.id}>
-          <img className="wishListImg" src={item.images[0]} alt={item.name} />
+        <ListItem key={item._id}>
+          <img className="wishListImg" src={item.image} alt={item.name} />
           <ListItemText>{item.name}</ListItemText>
         </ListItem>
       ))}

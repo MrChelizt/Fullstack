@@ -1,6 +1,7 @@
 export type Product = {
   _id: string;
   name: string;
+  image: string;
   castingTime: string;
   range: string;
   duration: string;

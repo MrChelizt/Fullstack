@@ -1,0 +1,40 @@
+.navbar_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.nav_list {
+  display: flex;
+}
+
+.nav_list li {
+  list-style-type: none;
+  padding: 0 1rem;
+  text-decoration: none;
+  color: blue;
+}
+
+.link {
+  font-weight: 600;
+  text-decoration: none;
+  color: blue;
+}
+
+.wishListImg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit: "cover";
+  margin: 5px;
+}
+
+.footerText {
+  font-size: small;
+}
+
+.icon {
+  text-decoration: none;
+  color: black;
+}

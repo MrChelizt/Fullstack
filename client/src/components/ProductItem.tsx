@@ -67,12 +67,12 @@ export default function ProductItem({ item }: Prop) {
   return (
     <Grid item xs={3}>
       <Card sx={{ maxWidth: 345 }}>
-        <Link to={`/products/${item.id}`}>
+        <Link to={`/products/${item._id}`}>
           <CardMedia
             component="img"
             height="250"
-            image={item.images[0]}
-            alt={item.description}
+            image={item.image}
+            alt={item.details}
           />
         </Link>
         <CardContent>

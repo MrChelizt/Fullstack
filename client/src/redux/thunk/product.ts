@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { productActions } from "../slices/product";
 import { AppDispatch } from "../store";
+import { productDetailActions } from "../slices/productDetails";
 
 export function fetchProductData() {
   const productUrl = "http://localhost:8000/products";
@@ -16,7 +17,7 @@ export function fetchProductDetail(productId: string) {
   const productDetailUrl = `http://localhost:8000/products/${productId}`;
   return async (dispatch: AppDispatch) => {
     axios.get(productDetailUrl).then(({ data }) => {
-      dispatch(productActions.getProductData(data));
+      dispatch(productDetailActions.getProductDetail(data));
     });
   };
 }
