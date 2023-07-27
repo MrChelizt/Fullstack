@@ -6,6 +6,7 @@ import passport from "passport";
 import apiErrorHandler from "./middlewares/apiErrorHandler";
 import productRouter from "./routes/products";
 import userRouter from "./routes/users";
+import orderRouter from "./routes/order";
 import { jwtStrategy } from "./config/passport";
 
 const app = express();
@@ -17,6 +18,7 @@ passport.use(jwtStrategy);
 
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use("/orders", orderRouter);
 
 app.use(apiErrorHandler);
 

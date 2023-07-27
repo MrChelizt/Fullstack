@@ -15,7 +15,13 @@ export type User = {
   email: string;
 };
 
-export type CartRecord = {
-  product: Product;
-  count: number;
+export type ProductOrder = Product & {
+  quantity: number;
+};
+
+export type Order = {
+  _id: string;
+  userId: string;
+  productList: ProductOrder[];
+  createdAt: string;
 };
