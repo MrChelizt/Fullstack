@@ -3,14 +3,12 @@ import { ToastContainer } from "react-toastify";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header";
-import AboutUs from "./pages/AboutUs";
-import Brand from "./pages/Brand";
 import Cart from "./pages/Cart";
-import Copyright from "./pages/Copyright";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import Products from "./pages/Products";
-import Sustainability from "./pages/Sustainability";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,12 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/brand" element={<Brand />} />
-        <Route path="/sustainability" element={<Sustainability />} />
-        <Route path="/about_us" element={<AboutUs />} />
-        <Route path="/copyright" element={<Copyright />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/sign_up" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <ToastContainer />
       <Footer />

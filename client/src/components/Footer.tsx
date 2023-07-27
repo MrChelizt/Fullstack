@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import {
   faFacebookSquare,
   faInstagramSquare,
@@ -39,7 +37,7 @@ export default function Footer() {
       </Box>
       <p className="footerText">
         The content of this website is copyright protected and belongs to
-        MrChelizt. <Link to="/copyright">READ MORE</Link>.
+        MrChelizt.
       </p>
       <img src={Logo} alt="MrChelizt" height={40} />
       <p className="footerText">Netherlands | €</p>

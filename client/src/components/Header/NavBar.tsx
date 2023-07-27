@@ -14,7 +14,9 @@ export default function NavBar() {
     (state: RootState) => state.products.wishProducts
   );
 
-  const cartCount = useSelector((state: RootState) => state.cart.totalCount);
+  const cartCount = useSelector(
+    (state: RootState) => state.cart.cartItems.length
+  );
 
   const dispatch = useDispatch();
 
@@ -29,6 +31,16 @@ export default function NavBar() {
         <li>
           <Link className="link" to="/products">
             Products
+          </Link>
+        </li>
+        <li>
+          <Link className="link" to="/login">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link className="link" to="/sign_up">
+            SignUp
           </Link>
         </li>
         <li
@@ -46,21 +58,6 @@ export default function NavBar() {
             <Badge badgeContent={cartCount} showZero color="primary">
               Cart
             </Badge>
-          </Link>
-        </li>
-        <li>
-          <Link className="link" to="/brand">
-            Brand
-          </Link>
-        </li>
-        <li>
-          <Link className="link" to="/sustainability">
-            Sustainability
-          </Link>
-        </li>
-        <li>
-          <Link className="link" to="/about_us">
-            About Us
           </Link>
         </li>
       </ul>

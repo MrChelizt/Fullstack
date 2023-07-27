@@ -3,15 +3,23 @@ import { useDispatch } from "react-redux";
 import { Box, Button } from "@mui/material";
 
 import { cartActions } from "../redux/slices/cart";
-import { CartRecord } from "../types/types";
+import { ProductOrder } from "../types/types";
 
 type Prop = {
-  index: number;
-  item: CartRecord;
+  item: ProductOrder;
 };
 
-export default function CartItem({ index, item }: Prop) {
+export default function CartItem({ item }: Prop) {
   const dispatch = useDispatch();
+
+  const increaseQuantityHandler = () => {
+    dispatch(cartActions.increaseQuantity(item));
+  };
+
+  const decreaseQuantityHandler = () => {
+    dispatch(cartActions.decreaseQuantity(item));
+  };
+
   return (
     <Box
       sx={{
@@ -21,11 +29,11 @@ export default function CartItem({ index, item }: Prop) {
         m: 1,
       }}
     >
-      <p>{item.product.name}</p>
+      <p>{item.name}</p>
       <Box
         sx={{ display: "flex", justifyContent: "space-between", width: "40%" }}
       >
-        <p>€ {item.product.price}</p>
+        <p>€ {item.price * item.quantity}</p>
         <Box
           sx={{
             display: "flex",
@@ -33,17 +41,11 @@ export default function CartItem({ index, item }: Prop) {
             width: "50%",
           }}
         >
-          <Button
-            variant="outlined"
-            onClick={() => dispatch(cartActions.increment(index))}
-          >
+          <Button variant="outlined" onClick={() => increaseQuantityHandler()}>
             +
           </Button>
-          <p>{item.count}</p>
-          <Button
-            variant="outlined"
-            onClick={() => dispatch(cartActions.decrement(index))}
-          >
+          <p>{item.quantity}</p>
+          <Button variant="outlined" onClick={() => decreaseQuantityHandler()}>
             -
           </Button>
         </Box>
