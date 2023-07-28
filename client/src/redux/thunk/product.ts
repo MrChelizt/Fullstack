@@ -5,7 +5,7 @@ import { AppDispatch } from "../store";
 import { productDetailActions } from "../slices/productDetails";
 
 export function fetchProductData() {
-  const productUrl = "http://localhost:8000/products";
+  const productUrl = "https://backend-toe5.onrender.com/products";
   return async (dispatch: AppDispatch) => {
     axios.get(productUrl).then(({ data }) => {
       dispatch(productActions.getProductData(data));
@@ -14,7 +14,7 @@ export function fetchProductData() {
 }
 
 export function fetchProductDetail(productId: string) {
-  const productDetailUrl = `http://localhost:8000/products/${productId}`;
+  const productDetailUrl = `https://backend-toe5.onrender.com/products/${productId}`;
   return async (dispatch: AppDispatch) => {
     axios.get(productDetailUrl).then(({ data }) => {
       dispatch(productDetailActions.getProductDetail(data));

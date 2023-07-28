@@ -30,7 +30,7 @@ export default function SignUp() {
 
   const onClickHandler = (event: SyntheticEvent) => {
     event.preventDefault();
-    const endpoint = "http://localhost:8000/users";
+    const endpoint = "https://backend-toe5.onrender.com/users";
 
     axios
       .post(endpoint, userInformation)

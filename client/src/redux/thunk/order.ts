@@ -5,7 +5,7 @@ import { AppDispatch } from "../store";
 import { ProductOrder } from "../../types/types";
 
 export function fetchOrderData(userId: string) {
-  const orderUrl = `http://localhost:8000/orders/${userId}`;
+  const orderUrl = `https://backend-toe5.onrender.com/orders/${userId}`;
   const token = localStorage.getItem("userToken");
 
   return async (dispatch: AppDispatch) => {
@@ -26,7 +26,7 @@ export function createOrder(
   productList: ProductOrder[]
 ) {
   const token = localStorage.getItem("userToken");
-  const url = `http://localhost:8000/orders/${userId}`;
+  const url = `https://backend-toe5.onrender.com/orders/${userId}`;
 
   axios
     .post(
