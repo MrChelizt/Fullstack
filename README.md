@@ -1,5 +1,7 @@
 # Fullstack Project
 
+Deploy Link: https://frontend-j8gp.onrender.com/
+
 ## How to run project
 
 ### Front-end
