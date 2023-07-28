@@ -68,10 +68,6 @@ export default function ProductDetail() {
             Back
           </Button>
         </Box>
-        <p>
-          Members receive free standard shipping and free returns on purchases
-          of at least €25
-        </p>
       </div>
     </Box>
   );
