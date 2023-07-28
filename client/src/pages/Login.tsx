@@ -9,7 +9,7 @@ import {
   Link,
 } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../redux/slices/user";
@@ -31,7 +31,8 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onClickHandler = () => {
+  const onClickHandler = (event: SyntheticEvent) => {
+    event.preventDefault();
     const endpoint = "http://localhost:8000/users/login";
 
     axios
@@ -42,7 +43,7 @@ export default function SignIn() {
 
           const userToken = res.data.token;
           localStorage.setItem("userToken", userToken);
-          navigate("/products");
+          navigate("/");
         }
         console.log(res.data);
       })

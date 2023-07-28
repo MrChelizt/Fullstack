@@ -9,7 +9,7 @@ import {
   Container,
 } from "@mui/material";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -28,7 +28,8 @@ export default function SignUp() {
 
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
+  const onClickHandler = (event: SyntheticEvent) => {
+    event.preventDefault();
     const endpoint = "http://localhost:8000/users";
 
     axios
@@ -37,9 +38,10 @@ export default function SignUp() {
         if (res.status === 200) {
           navigate("/login");
         }
-        console.log(res.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
     setUserInformation({ email: "", password: "" });
   };
 

@@ -9,14 +9,15 @@ import {
 const router = Router();
 
 router.post(
-  ":/id",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   createOrderController
 );
 
 router.get(
-  ":/id",
-  passport.authenticate("jwt", { session: false }, getOrderListByUserId)
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  getOrderListByUserId
 );
 
 export default router;

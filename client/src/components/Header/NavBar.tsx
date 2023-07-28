@@ -60,6 +60,11 @@ export default function NavBar() {
             </Badge>
           </Link>
         </li>
+        <li>
+          <Link className="link" to="/order">
+            Orders
+          </Link>
+        </li>
       </ul>
     </div>
   );

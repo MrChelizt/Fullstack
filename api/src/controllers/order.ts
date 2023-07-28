@@ -14,7 +14,7 @@ export const createOrderController = async (
       productList: req.body.productList,
     });
     const order = await orderServices.createOrder(newOrder);
-    res.json(order);
+    res.status(200).json(order);
   } catch (error) {
     next(error);
   }

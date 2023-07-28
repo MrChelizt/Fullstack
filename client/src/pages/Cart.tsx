@@ -1,51 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
 import { Box, Button } from "@mui/material";
 
 import CartItem from "../components/CartItem";
 import { cartActions } from "../redux/slices/cart";
 import { RootState } from "../redux/store";
-import axios from "axios";
+import { createOrder } from "../redux/thunk/order";
 
 export default function Cart() {
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-
+  const cartList = useSelector((state: RootState) => state.cart.cartItems);
   const userDetail = useSelector(
-    (state: RootState) => state.userInformation.userInformation
+    (state: RootState) => state.users.userInformation
   );
 
-  const total = cartItems.reduce<number>((add, current) => {
+  const total = cartList.reduce<number>((accumulator, current) => {
     const productTotal = current.price * current.quantity;
-    return add + productTotal;
+    return accumulator + productTotal;
   }, 0);
 
-  const onClickHandler = () => {
-    const token = localStorage.getItem("userToken");
-    const url = `http://localhost:8000/orders/${userDetail?._id}`;
-    axios
-      .post(
-        url,
-        { productList: cartItems },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          alert("thanks");
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          alert("log in");
-          return;
-        }
-      });
-  };
+  function onClickHandler() {
+    createOrder(userDetail?._id, cartList);
+  }
 
   const dispatch = useDispatch();
 
@@ -65,7 +40,9 @@ export default function Cart() {
     });
   };
 
-  const mappedCartItems = cartItems.map((item) => <CartItem item={item} />);
+  const mappedCartItems = cartList.map((item) => (
+    <CartItem key={item._id} item={item} />
+  ));
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
